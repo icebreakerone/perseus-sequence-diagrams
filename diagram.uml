@@ -1,0 +1,126 @@
+@startuml
+' ===========================
+' IB1 / Perseus visual theme
+' ===========================
+!define IB1_BLACK    #0D1C22
+!define IB1_DARKBLUE #1A3844
+!define IB1_GREY4    #5A7084
+!define IB1_GREY3    #91A9BD
+!define IB1_GREY2    #C8D4DE
+!define IB1_GREY1    #ECF0F1
+!define IB1_ORANGE   #FF4D11
+!define IB1_YELLOW   #FFEC00
+
+skinparam actorStyle awesome
+
+' --- Global background & font ---
+skinparam BackgroundColor #FFF
+skinparam DefaultFontName "Open Sans, Helvetica, Sans-Serif"
+skinparam DefaultFontSize 18px
+skinparam DefaultFontColor IB1_BLACK
+
+' --- Sequence-specific styling ---
+skinparam sequence {
+  ArrowColor IB1_ORANGE
+  ArrowThickness 2
+
+  LifelineBorderColor IB1_DARKBLUE
+  LifelineBackgroundColor IB1_GREY1
+
+  ParticipantBorderColor IB1_DARKBLUE
+  ParticipantBackgroundColor IB1_GREY2
+  ParticipantFontColor IB1_BLACK
+
+  ActorBorderColor IB1_DARKBLUE
+  ActorBackgroundColor IB1_GREY2
+  ActorFontColor IB1_BLACK
+
+  BoxBackgroundColor IB1_GREY1
+  BoxBorderColor IB1_DARKBLUE
+
+  NoteBackgroundColor IB1_YELLOW
+  NoteBorderColor IB1_ORANGE
+  NoteFontColor IB1_BLACK
+  
+  DividerBackgroundColor IB1_GREY2
+  DividerBorderColor IB1_DARKBLUE
+  DividerFontColor IB1_BLACK
+}
+
+' ===========================
+' Participants with per-role colours
+' ===========================
+
+actor SME as "User (SME)"
+participant CAP as "CAP Web/App" IB1_GREY2
+participant EDP as "Energy Data Provider" IB1_GREY2
+participant FSP as "Financial Service Provider" IB1_GREY2
+
+title Perseus Permission Flows
+
+actor SME as "User (SME)"
+participant CAP as "CAP Web/App"
+participant EDP as "Energy Data Provider"
+participant FSP as "Financial Service Provider"
+
+' ------------------------------------------------------------------------
+' FSP-INITIATED FLOW: ONE PERMISSION
+' ------------------------------------------------------------------------
+== FSP-initiated with ONE permission ==
+
+FSP -> SME: Send start link\n(CAP URL + FSP member info)
+SME -> CAP: Open CAP landing page
+CAP -> CAP: Store FSP identifier\n(preselect FSP for this and future sessions)
+
+SME -> CAP: Create account / Log in
+CAP -> SME: Show optional introduction\n(3-step process overview)
+
+SME -> CAP: Click "Get started"
+
+CAP -> SME: Display permission screen\n(using correct registry-specified text)\n1. Access + process EDP data\n2. Share emissions data with this FSP
+SME -> CAP: Accept permission (mandatory checkbox)
+
+CAP -> CAP: Log permission\n- Timestamp\n- Logged-in user\n- IP\n- User agent\n- License version displayed
+
+CAP -> EDP: Start EDP connection flow
+SME -> EDP: Authenticate + authorise meter access
+EDP --> CAP: Return consumption data\n(one or multiple meters)
+
+CAP -> CAP: Aggregate consumption and calculate emissions
+
+CAP -> FSP: Provide emissions data/report
+
+
+' ------------------------------------------------------------------------
+' CAP-INITIATED FLOW: TWO PERMISSIONS
+' ------------------------------------------------------------------------
+== CAP-initiated with TWO permissions ==
+
+' ---- Permission 1: Connect to EDP ----
+SME -> CAP: Open CAP start page
+SME -> CAP: Create account / Log in
+
+CAP -> SME: Show EDP Permission screen\n(using correct registry-specified text)\nPermission: access + process EDP data\nfor providing SME advice
+SME -> CAP: Accept permission
+
+CAP -> CAP: Log permission\n(including license version)
+
+CAP -> EDP: Start EDP connection flow
+SME -> EDP: Authenticate + authorise meters
+EDP --> CAP: Return consumption data
+
+CAP -> CAP: Aggregate consumption and calculate emissions
+
+
+' ---- Permission 2: Share with chosen FSP ----
+SME -> CAP: View FSP offers
+SME -> CAP: Select FSP
+
+CAP -> SME: Show FSP Permission screen\n(using correct registry-specified text)\nPermission: share emissions data with this FSP
+SME -> CAP: Accept permission
+
+CAP -> CAP: Log permission\n(including license version)
+
+CAP -> FSP: Provide emissions data/report
+
+@enduml
