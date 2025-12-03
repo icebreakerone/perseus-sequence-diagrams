@@ -43,7 +43,7 @@ skinparam sequence {
   BoxBackgroundColor IB1_GREY1
   BoxBorderColor IB1_DARKBLUE
   
-  DividerBackgroundColor IB1_GREY2
+  DividerBackgroundColor IB1_WHITE
   DividerBorderColor IB1_DARKBLUE
   DividerFontColor IB1_BLACK
   DividerFontSize 20
