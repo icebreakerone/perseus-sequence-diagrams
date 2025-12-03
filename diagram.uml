@@ -16,8 +16,9 @@ skinparam actorStyle awesome
 ' --- Global background & font ---
 skinparam BackgroundColor #FFF
 skinparam DefaultFontName "Open Sans, Helvetica, Sans-Serif"
-skinparam DefaultFontSize 18px
 skinparam DefaultFontColor IB1_BLACK
+skinparam DefaultFontSize 20
+skinparam TitleFontSize 30
 
 ' --- Sequence-specific styling ---
 skinparam sequence {
@@ -30,23 +31,23 @@ skinparam sequence {
   ParticipantBorderColor IB1_DARKBLUE
   ParticipantBackgroundColor IB1_GREY2
   ParticipantFontColor IB1_BLACK
+  ParticipantFontSize 20
 
   ActorBorderColor IB1_DARKBLUE
   ActorBackgroundColor IB1_GREY2
   ActorFontColor IB1_BLACK
+  ActorFontSize 20
+
+  MessageFontSize 13
 
   BoxBackgroundColor IB1_GREY1
   BoxBorderColor IB1_DARKBLUE
-
-  NoteBackgroundColor IB1_YELLOW
-  NoteBorderColor IB1_ORANGE
-  NoteFontColor IB1_BLACK
   
   DividerBackgroundColor IB1_GREY2
   DividerBorderColor IB1_DARKBLUE
   DividerFontColor IB1_BLACK
+  DividerFontSize 20
 }
-
 ' ===========================
 ' Participants with per-role colours
 ' ===========================
