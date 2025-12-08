@@ -1,6 +1,6 @@
 @startuml Authentication Flow - Swimlane Diagram
 !include perseus-theme.puml
-title OAuth 2.0 Flow by Participant
+title Authentication flow
 
 |User|
 start
@@ -8,6 +8,7 @@ start
 
 |CAP|
 :Retrieve list of EDPs with authentication and data endpoints;
+:Check EDPs against directory whitelist;
 
 |User|
 :User selects edp;
