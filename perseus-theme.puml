@@ -1,0 +1,171 @@
+' Perseus Theme for PlantUML Diagrams
+' Styled to match https://ib1.org/perseus/ aesthetic
+
+' ===========================
+' IB1 / Perseus visual theme
+' ===========================
+!define IB1_BLACK    #0D1C22
+!define IB1_DARKBLUE #1A3844
+!define IB1_GREY4    #5A7084
+!define IB1_GREY3    #91A9BD
+!define IB1_GREY2    #C8D4DE
+!define IB1_GREY1    #ECF0F1
+!define IB1_ORANGE   #FF4D11
+!define IB1_YELLOW   #FFEC00
+
+skinparam actorStyle awesome
+
+' --- Global background & font ---
+skinparam BackgroundColor #FFF
+skinparam DefaultFontName "Open Sans, Helvetica, Sans-Serif"
+skinparam DefaultFontColor IB1_BLACK
+skinparam DefaultFontSize 20
+skinparam TitleFontSize 30
+
+
+
+' Activity/State diagram styling
+skinparam activity {
+    BackgroundColor #F8F9FA
+    BorderColor #6C757D
+    FontColor #212529
+    FontSize 13
+    FontStyle bold
+    BorderThickness 2
+    RoundCorner 8
+}
+
+skinparam activityDiamond {
+    BackgroundColor #E9ECEF
+    BorderColor #495057
+    FontColor #212529
+    FontSize 13
+    FontStyle bold
+}
+
+skinparam startEnd {
+    BackgroundColor #0D6EFD
+    BorderColor #0A58CA
+    FontColor #FFFFFF
+    FontSize 13
+    FontStyle bold
+    RoundCorner 20
+}
+
+skinparam partition {
+    BackgroundColor #E7F1FF
+    BorderColor #0D6EFD
+    FontColor #0A58CA
+    FontSize 14
+    FontStyle bold
+    BorderThickness 2
+    RoundCorner 4
+}
+
+skinparam arrow {
+    Color #0D6EFD
+    Thickness 2
+    FontColor #495057
+    FontSize 12
+}
+
+skinparam note {
+    BackgroundColor #FFF3CD
+    BorderColor #FFC107
+    FontColor #856404
+    FontSize 12
+    RoundCorner 6
+}
+
+skinparam title {
+    FontSize 18
+    FontStyle bold
+}
+
+' --- Sequence-specific styling ---
+skinparam sequence {
+  ArrowColor IB1_ORANGE
+  ArrowThickness 2
+
+  LifelineBorderColor IB1_DARKBLUE
+  LifelineBackgroundColor IB1_GREY1
+
+  ParticipantBorderColor IB1_DARKBLUE
+  ParticipantBackgroundColor IB1_GREY2
+  ParticipantFontColor IB1_BLACK
+  ParticipantFontSize 20
+
+  ActorBorderColor IB1_DARKBLUE
+  ActorBackgroundColor IB1_GREY2
+  ActorFontColor IB1_BLACK
+  ActorFontSize 20
+
+  MessageFontSize 13
+
+  BoxBackgroundColor IB1_GREY1
+  BoxBorderColor IB1_DARKBLUE
+  
+  DividerBackgroundColor IB1_WHITE
+  DividerBorderColor IB1_DARKBLUE
+  DividerFontColor IB1_BLACK
+  DividerFontSize 20
+}
+
+' Sequence diagram styling (if used)
+' skinparam sequence {
+'     ArrowColor #0D6EFD
+'     ActorBorderColor #0A58CA
+'     ActorBackgroundColor #E7F1FF
+'     ActorFontColor #0A58CA
+'     ActorFontSize 14
+'     ActorFontStyle bold
+'     LifeLineBorderColor #6C757D
+'     LifeLineBackgroundColor #F8F9FA
+'     ParticipantBorderColor #495057
+'     ParticipantBackgroundColor #FFFFFF
+'     ParticipantFontColor #212529
+'     ParticipantFontSize 13
+'     ParticipantFontStyle bold
+'     BoxBorderColor #DEE2E6
+'     BoxBackgroundColor #F8F9FA
+' }
+
+' Component diagram styling (if used)
+skinparam component {
+    BackgroundColor #FFFFFF
+    BorderColor #0D6EFD
+    FontColor #212529
+    FontSize 13
+    FontStyle bold
+}
+
+skinparam interface {
+    BackgroundColor #E7F1FF
+    BorderColor #0A58CA
+    FontColor #0A58CA
+    FontSize 12
+}
+
+skinparam package {
+    BackgroundColor #F8F9FA
+    BorderColor #6C757D
+    FontColor #495057
+    FontSize 12
+    FontStyle bold
+}
+
+' State diagram styling (if used)
+skinparam state {
+    BackgroundColor #F8F9FA
+    BorderColor #0D6EFD
+    FontColor #212529
+    FontSize 13
+    FontStyle bold
+    RoundCorner 8
+}
+
+' General styling
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam linetype ortho
+

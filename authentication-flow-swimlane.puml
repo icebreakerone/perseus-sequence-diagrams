@@ -1,0 +1,80 @@
+@startuml Authentication Flow - Swimlane Diagram
+!include perseus-theme.puml
+title OAuth 2.0 Flow by Participant
+
+|User|
+start
+:Visits landing page;
+
+|CAP|
+:Retrieve list of EDPs with authentication and data endpoints;
+
+|User|
+:User selects edp;
+
+|CAP|
+:Generate PKCE code verifier\nand challenge;
+:Store code verifier locally;
+:Discover OIDC metadata;
+:Construct PAR request;
+
+|EDP Authentication Service|
+:Receive PAR request\n(mTLS + validate cert);
+:Validate client certificate role;
+:Store PAR;
+:Return request_uri;
+
+|CAP|
+:Construct authorization URL;
+:Present URL to user;
+
+|User|
+:Navigate to authorization URL;
+:Authenticate and grant consent;
+
+|EDP Authentication Service|
+:Validate authorization;
+:Generate authorization code;
+:Redirect to callback URL;
+
+|User|
+:Redirected to callback\nwith authorization code;
+
+|CAP|
+:Receive authorization code\nat /callback;
+:Read stored code_verifier;
+
+|CAP|
+:Exchange code for token\n(mTLS + validate cert);
+
+|EDP Authentication Service|
+:Validate client certificate role;
+:Validate token;
+:Bind token to certificate thumbprint;
+:Store permissions;
+:Return access_token + refresh_token;
+
+|CAP|
+:Request meter list\n(mTLS + Bearer token);
+
+|EDP Data Service|
+:Validate client certificate role;
+:Validate access token;
+:Return meter list;
+
+|CAP|
+:Request meter data\n(mTLS + Bearer token);
+
+|EDP Data Service|
+:Validate client certificate role;
+:Validate access token;
+:Generate provenance record;
+:Return meter data + provenance;
+
+|CAP|
+:Add CAP record to provenance record;
+stop
+
+
+
+@enduml
