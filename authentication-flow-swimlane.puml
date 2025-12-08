@@ -17,10 +17,10 @@ start
 :Generate PKCE code verifier\nand challenge;
 :Store code verifier locally;
 :Discover OIDC metadata;
-:Construct PAR request;
+:Construct PAR request\n(mTLS);
 
 |EDP Authentication Service|
-:Receive PAR request\n(mTLS + validate cert);
+:Receive PAR request;
 :Validate client certificate role;
 :Store PAR;
 :Return request_uri;
@@ -46,7 +46,7 @@ start
 :Read stored code_verifier;
 
 |CAP|
-:Exchange code for token\n(mTLS + validate cert);
+:Exchange code for token\n(mTLS);
 
 |EDP Authentication Service|
 :Validate client certificate role;
