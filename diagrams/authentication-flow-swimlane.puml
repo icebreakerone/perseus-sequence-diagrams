@@ -31,6 +31,11 @@ start
 
 |User|
 :Navigate to authorization URL;
+
+|EDP Authentication Service|
+:Serves login pages;
+
+|User|
 :Authenticate and grant consent;
 
 |EDP Authentication Service|
